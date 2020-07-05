@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :show, :edit, :update]
-  before_action :set_user, only: [:edit, :update]
+  before_action :set_user, only: [:update]
 
   def index
     @users = User.all
@@ -15,6 +15,8 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
+    redirect_to action: :show, id:current_user.id, notice: '' if @user.id != current_user.id
   end
 
   def update
