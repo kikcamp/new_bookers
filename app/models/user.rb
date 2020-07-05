@@ -4,8 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-    validates :email, presence: true
-    validates :encrypted_password, presence: true # TODO
-    validates :name, presence: true, length: { in: 2..20 }
-    validates :introduction, length: { maximum: 50 }
+  validates :email, presence: true
+  validates :encrypted_password, presence: true # TODO
+  validates :name, presence: true, length: { in: 2..20 }
+  validates :introduction, length: { maximum: 50 }
+
+  attachment :profile_image
+
+  has_many :books
 end
