@@ -7,5 +7,5 @@ class User < ApplicationRecord
     validates :email, presence: true
     validates :encrypted_password, presence: true # TODO
     validates :name, presence: true, length: { in: 2..20 }
-    validates :introduction, presence: true, length: { maximum: 50 }
+    validates :introduction, length: { maximum: 50 }
 end
