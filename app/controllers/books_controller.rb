@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_book, only: [:edit, :update, :destroy]
+  before_action :set_book, only: [:update, :destroy]
 
   def index
     @books = Book.all
@@ -15,6 +15,8 @@ class BooksController < ApplicationController
   end
 
   def edit
+    @book = Book.find(params[:id])
+    redirect_to action: :index, notice: '' if @book.user.id != current_user.id
   end
 
   def create
